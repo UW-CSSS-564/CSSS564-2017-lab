@@ -21,6 +21,7 @@ model {
   l_gdp ~ normal(beta[1] + beta[2] * africa + beta[3] * rugged + beta[4] * inter, sigma);
 }
 generated quantities {
-  real l_gdp_pred;
-  l_gdp_pred = normal_rng(beta[1] + beta[2] * africa + beta[3] * rugged + beta[4] * inter, sigma);
+  vector[N] l_gdp_pred;
+  for (n in 1:N)
+    l_gdp_pred[n] = normal_rng(beta[1] + beta[2] * africa[n] + beta[3] * rugged[n] + beta[4] * inter[n], sigma);
 }

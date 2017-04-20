@@ -48,3 +48,8 @@ fit.inter <- stan(file = 'africa2.stan', data = inter_dat, iter = 1000, chains =
 print(fit.inter)
 plot(fit.inter, show_density = TRUE, ci_level = 0.95, fill_color = "purple")
 stan_hist(fit.inter)
+preds <- extract(fit.inter, 'l_gdp_pred')$l_gdp_pred # extract predictions
+hist(apply(preds, 2, mean)) # Average value at each observation
+hist(preds[,1]) # Histogram of samples for 1st observation
+plot(d$log_gdp, apply(preds, 2, mean)) # How do the predictions match up with the real values
+cor(d$log_gdp, apply(preds, 2, mean))
