@@ -31,4 +31,6 @@ water_dat <- list(N = 9,
 fit <- stan(file = 'rCode2_6.stan', data = water_dat, 
             iter = 1000, chains = 4)
 
-water_dat_alt <- list(N = 9)
+water_dat_alt <- list(N = 9, w = 6)
+
+fit <- stan(file = 'rCode2_6alt.stan', data = water_dat_alt, iter = 1000, chains = 4)
